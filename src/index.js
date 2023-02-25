@@ -8,19 +8,21 @@ const books = [
     image: './images/book-1.jpg',
     author: 'Alice Schertle',
     title: 'Little Blue Trucks homes',
+    id: 1,
   },
   {
     image:
       'https://images-na.ssl-images-amazon.com/images/I/81Oa54UCQoL._AC_UL900_SR900,600_.jpg',
     author: 'B.Dylan Hollis',
     title: 'Baking Yesteryear: Book',
+    id: 2,
   },
 ]
 const BookList = () => {
   return (
     <section className="booklist">
-      {books.map(({ title, image, author }) => {
-        return <Book img={image} title={title} author={author} />
+      {books.map(({ title, image, author, id }) => {
+        return <Book img={image} title={title} author={author} key={id} />
       })}
     </section>
   )
