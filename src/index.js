@@ -5,14 +5,13 @@ import './index.css'
 
 const books = [
   {
-    image: './images/book-1.jpg',
+    img: './images/book-1.jpg',
     author: 'Alice Schertle',
     title: 'Little Blue Trucks homes',
     id: 1,
   },
   {
-    image:
-      'https://images-na.ssl-images-amazon.com/images/I/81Oa54UCQoL._AC_UL900_SR900,600_.jpg',
+    img: 'https://images-na.ssl-images-amazon.com/images/I/81Oa54UCQoL._AC_UL900_SR900,600_.jpg',
     author: 'B.Dylan Hollis',
     title: 'Baking Yesteryear: Book',
     id: 2,
@@ -21,13 +20,43 @@ const books = [
 const BookList = () => {
   return (
     <section className="booklist">
-      {books.map(({ title, image, author, id }) => {
-        return <Book img={image} title={title} author={author} key={id} />
+      <EventExample />
+      {books.map((book) => {
+        return <Book {...book} key={book.id} />
       })}
     </section>
   )
 }
 
+const EventExample = () => {
+  const handleFormInput = (e) => {
+    console.log('handle Form input')
+    console.log(e.target)
+    console.log(e.target.name)
+    console.log(e.target.value)
+  }
+  const handleButtonClick = () => {
+    alert('Handle Button Click')
+  }
+  const handleFormSubmission = (e) => {
+    e.preventDefault()
+    console.log('form Submit')
+  }
+  return (
+    <section>
+      <form onSubmit={handleFormSubmission}>
+        <h2>Typical Form</h2>
+        <input
+          type="text"
+          name="example"
+          style={{ margin: '1rem 0' }}
+          onChange={handleFormInput}
+        />
+      </form>
+      <button onClick={handleButtonClick}>Click Me</button>
+    </section>
+  )
+}
 const Book = ({ title, img, author }) => {
   return (
     <article className="book">
